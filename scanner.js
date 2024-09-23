@@ -238,6 +238,7 @@
                 option.value = device.deviceId;
                 option.text = device.label || `Camera ${index + 1}`;
                 cameraSelect.appendChild(option);
+                console.log('Found video device: ', device, index + 1);
             });
             // Set the current device ID to the first one
             currentDeviceId = videoDevices[0].deviceId;
