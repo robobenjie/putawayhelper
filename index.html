@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Put Away Helper</title>
+    <style>
+        /* Global Styles */
+        body {
+            display: flex;
+            justify-content: center; /* Horizontal centering */
+            align-items: center;    /* Vertical centering */
+            flex-direction: column;
+            min-height: 100vh;      /* Full viewport height */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Container for Video and Canvas */
+        #container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Video Element */
+        #video {
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Canvas for Bounding Boxes */
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid transparent; /* Initial transparent border */
+            border-radius: 8px;
+        }
+
+        /* Camera Selector Dropdown */
+        #cameraSelect {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #333;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        /* Scan Results Table */
+        #scanResultsTable {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Header */
+        #scanResultsTable th {
+            background-color: #333;
+            color: #fff;
+            padding: 12px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        /* Table Data */
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            font-size: 3.1em; /* Increased font size */
+        }
+
+        td.small {
+            font-size: 1.5em; /* Adjust as needed */
+        }
+
+        /* Alternate Row Coloring */
+        #scanResultsTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1000px) {
+            #scanResultsTable {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>1D Barcode Scanner</h1>
+    <div id="container">
+        <video id="video" playsinline autoplay></video>
+        <canvas id="canvas"></canvas>
+    </div>
+    <select id="cameraSelect"></select>
+
+    <!-- Scan Results Table -->
+    <table id="scanResultsTable">
+        <thead>
+            <tr>
+                <th class="small">Description</th>
+                <th>Location</th>
+                <th class="small">UPC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Scanned results will be appended here -->
+        </tbody>
+    </table>
+
+    <!-- Include your JavaScript file -->
+    <script src="scanner.js"></script>
+
+</body>
+</html>
