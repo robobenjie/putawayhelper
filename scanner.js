@@ -384,7 +384,7 @@
                         // Create a new row and insert at the top
                         const newRow = document.createElement('tr');
                         newRow.innerHTML = `
-                            <td class="small">${description}</td>
+                            <td class="big">${description}</td>
                             <td class="big">${location}</td>
                             <td class="small">${scannedUPC}</td>
                         `;
