@@ -230,23 +230,41 @@
     // Function to populate the camera selector
     const populateCameraSelect = async () => {
         try {
+            console.log('Requesting temporary camera access to get device labels.');
+            // Request camera access to get device labels
+            const tempStream = await navigator.mediaDevices.getUserMedia({ video: true });
+            // Immediately stop the temporary stream
+            tempStream.getTracks().forEach(track => track.stop());
+            console.log('Temporary camera access granted.');
+
             devices = await navigator.mediaDevices.enumerateDevices();
             const videoDevices = devices.filter(device => device.kind === 'videoinput');
             cameraSelect.innerHTML = '';
+            
+            if (videoDevices.length === 0) {
+                showNotification('No video input devices found.', true);
+                console.log('No video input devices found.');
+                return;
+            }
+
             videoDevices.forEach((device, index) => {
                 const option = document.createElement('option');
                 option.value = device.deviceId;
                 option.text = device.label || `Camera ${index + 1}`;
                 cameraSelect.appendChild(option);
-                console.log('Found video device: ', device, index + 1);
             });
+
+            // Log available devices
+            console.log('Available Video Devices:', videoDevices);
+
             // Set the current device ID to the first one
             currentDeviceId = videoDevices[0].deviceId;
             cameraSelect.value = currentDeviceId;
+            console.log('Selected Camera ID:', currentDeviceId);
             await startVideo(currentDeviceId);
         } catch (err) {
-            console.error('Error enumerating devices: ', err);
-            alert('Error accessing video devices.');
+            console.error('Error enumerating devices:', err);
+            showNotification('Error accessing video devices.', true);
         }
     };
 
