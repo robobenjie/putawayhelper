@@ -384,9 +384,8 @@
                         // Create a new row and insert at the top
                         const newRow = document.createElement('tr');
                         newRow.innerHTML = `
-                            <td>${timestamp}</td>
                             <td class="small">${description}</td>
-                            <td>${location}</td>
+                            <td class="big">${location}</td>
                             <td class="small">${scannedUPC}</td>
                         `;
                         // Insert the new row at the beginning of the table body

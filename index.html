@@ -58,7 +58,7 @@
         /* Scan Results Table */
         #scanResultsTable {
             width: 100%;
-            max-width: 600px;
+            max-width: 1000px;
             border-collapse: collapse;
             margin-top: 30px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -78,6 +78,11 @@
             border: 1px solid #ddd;
             padding: 12px;
             font-size: 1.1em; /* Increased font size */
+        }
+
+                /* Table Data */
+        #scanResultsTable td.big {
+            font-size: 3.1em; /* Increased font size */
         }
 
         /* Alternate Row Coloring */
@@ -137,7 +142,6 @@
     <table id="scanResultsTable">
         <thead>
             <tr>
-                <th>Timestamp</th>
                 <th class="small">Description</th>
                 <th>Location</th>
                 <th class="small">UPC</th>
