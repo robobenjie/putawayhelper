@@ -187,7 +187,7 @@ C02002Z05,888849000234,12,Purple Protein Bar
     // For faster lookup, create a Map of UPC to item
     const itemsMap = new Map();
     items.forEach(item => {
-        itemsMap.set(item.upc, item);
+        itemsMap.set(item.upcs, item);
     });
     console.log('Items Map Created:', itemsMap);
 
