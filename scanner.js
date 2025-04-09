@@ -151,7 +151,7 @@ C01004Y02,839294603266,3,Body Wash
 C01004Y03,849607071590,3,Dish Soap
 C01004Y04,816559010830,1,Aloe Deodorant Bar
 C01004Y05,070330916142,3,Silky Touch Razors
-C01004Y06,639277498533,1,Six Men’s Razors
+C01004Y06,639277498533,1,Six Men's Razors
 C01004Z01,875010002128,3,Bubble Bath
 C01004Z02,722429420183,3,Laundry Detergent
 C01004Z03,875010001756,3,Shampoo
@@ -187,7 +187,12 @@ C02002Z05,888849000234,12,Purple Protein Bar
     // For faster lookup, create a Map of UPC to item
     const itemsMap = new Map();
     items.forEach(item => {
+        // Check for match with and without leading '0'
+        const normalizedUpc = item.upcs.startsWith('0') ? item.upcs.slice(1) : item.upcs;
         itemsMap.set(item.upcs, item);
+        if (item.upcs.startsWith('0')) {
+            itemsMap.set(normalizedUpc, item);
+        }
     });
     console.log('Items Map Created:', itemsMap);
 
@@ -334,7 +339,11 @@ C02002Z05,888849000234,12,Purple Protein Bar
                         ctx.stroke();
 
                         // Look up the barcode in the items map
-                        const item = itemsMap.get(scannedUPC);
+                        let item = itemsMap.get(scannedUPC);
+                        // If not found and starts with 0, try without leading 0
+                        if (!item && scannedUPC.startsWith('0')) {
+                            item = itemsMap.get(scannedUPC.slice(1));
+                        }
 
                         let description, location;
                         if (item) {
